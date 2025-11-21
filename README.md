@@ -72,12 +72,14 @@ Evaluates the best model against the test dataset.
 ### **Step 4 — CheckAUCScoreChurnEvaluation (ConditionStep)**  
 Controls whether the model should proceed to the next steps.
 
+IF AUC > 0.75:
+    continue pipeline
+ELSE:
+    stop pipeline
+
 This step **only checks the AUC value** — it does **not** create or register the model.
 
-IF AUC > 0.75:
-continue
-ELSE:
-stop pipeline
+---
 
 ### **Step 5 — RegisterChurnModel (RegisterModel)**  
 Registers the model in the SageMaker Model Registry.
@@ -85,8 +87,8 @@ Registers the model in the SageMaker Model Registry.
 - Stores model data + metrics  
 - Logs AUC score into Model Package metadata  
 - Supports inference instances & batch transform instances  
-- Creates or updates this package group:
-
+- Creates or updates this package group:  
+ChurnModelPackageGroup
 
 ---
 
@@ -101,32 +103,27 @@ This is the final step of the working pipeline.
 
 ---
 
-ChurnModelProcess
-↓
+## 4. Execution Flow (Updated)
 
-ChurnHyperParameterTuning
-↓
-
-ChurnEvalBestModel
-↓
-
-CheckAUCScoreChurnEvaluation
-├── AUC ≤ 0.75 → STOP
-└── AUC > 0.75 → continue
-↓
-
-RegisterChurnModel
-↓
-
-ChurnCreateModel
-↓
+1. ChurnModelProcess
+            ↓
+2. ChurnHyperParameterTuning
+            ↓
+3. ChurnEvalBestModel
+            ↓
+4. CheckAUCScoreChurnEvaluation
+         ├── AUC ≤ 0.75 → STOP
+         └── AUC > 0.75 → continue
+                    ↓
+5. RegisterChurnModel
+            ↓
+6. ChurnCreateModel
+            ↓
 (end)
-
-
 
 ---
 
-## Removed Steps (Due to AWS Restrictions)
+## 5. Removed Steps (Due to AWS Restrictions)
 
 The original project contained steps that cannot run in the current SageMaker Studio environment.
 
@@ -138,7 +135,7 @@ The original project contained steps that cannot run in the current SageMaker St
 
 ---
 
-## AWS Environment Limitations
+## 6. AWS Environment Limitations
 
 ### **1. Clarify Not Supported in Current Studio**  
 - The class project was designed for an older Studio version  
@@ -158,7 +155,7 @@ The original project contained steps that cannot run in the current SageMaker St
 
 ---
 
-## Final Status
+## 7. Final Status
 
 | Step | Result |
 |------|--------|
@@ -176,7 +173,7 @@ The pipeline now completes cleanly through **Model Creation**, which is the high
 
 ---
 
-## Conclusion
+## 8. Conclusion
 
 The original GitHub project used outdated SageMaker code incompatible with the modern Studio environment.  
 To make the pipeline runnable:
@@ -190,8 +187,4 @@ To make the pipeline runnable:
 The final pipeline is production-ready up through **model creation**, satisfying the learning objectives of the mini-project.
 
 ---
-![Final Working Pipeline](sandbox:/mnt/data/Screenshot%202025-11-14%20at%202.54.53%E2%80%AFPM.png)
-
-![Failed Pipeline](sandbox:/mnt/data/Screenshot%202025-11-14%20at%202.53.13%E2%80%AFPM.png)
-
 
