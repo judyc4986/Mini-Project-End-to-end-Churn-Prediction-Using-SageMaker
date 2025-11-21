@@ -30,11 +30,11 @@ The pipeline automates:
 
 ### ✅ A. Final Working Pipeline (Ends at Model Creation)
 
-![Final Working Pipeline](<sandbox:/mnt/data/Screenshot%202025-11-14%20at%202.54.53 PM.png>)
+![Succeeded Pipeline](https://github.com/judyc4986/Mini-Project-End-to-end-Churn-Prediction-Using-SageMaker/blob/d3e1a1de07a5a3a97a90e0ccf5ef2b9067fa03f1/succeeded.jpg?raw=true)
 
 ### ❌ B. Original Full Pipeline (Clarify + Transform Failed)
 
-![Failed Pipeline](<sandbox:/mnt/data/Screenshot%202025-11-14%20at%202.53.13 PM.png>)
+![Failed Pipeline](https://github.com/judyc4986/Mini-Project-End-to-end-Churn-Prediction-Using-SageMaker/blob/d3e1a1de07a5a3a97a90e0ccf5ef2b9067fa03f1/failed.jpg?raw=true)
 
 ---
 
